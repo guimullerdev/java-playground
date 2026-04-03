@@ -10,7 +10,7 @@ class TaskManager {
     fun listAll() {
         if (tasks.isEmpty()) { println("Nenhuma tarefa!"); return }
         tasks.forEach { task ->
-            val status = if (task.isDone) "✔" else "○"
+            val status = if (task.isDone) "x" else " "
             println("[$status] #${task.id} - ${task.title} (${task.priority})")
         }
     }
