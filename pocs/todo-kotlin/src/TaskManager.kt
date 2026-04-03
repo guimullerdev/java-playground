@@ -14,4 +14,8 @@ class TaskManager {
             println("[$status] #${task.id} - ${task.title} (${task.priority})")
         }
     }
+
+    fun delete(id: Int) {
+        tasks.removeIf { it.id == id }
+    }
 }
