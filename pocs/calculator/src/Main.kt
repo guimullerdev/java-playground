@@ -1,4 +1,4 @@
-fun Main() {
+fun main() {
     val calculator = Calculator();
 
     while(true) {
