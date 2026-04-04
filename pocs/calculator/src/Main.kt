@@ -20,7 +20,13 @@ fun Main() {
                 }
             }
             "2" -> {
-
+                print("Numero 1: ")
+                val number1 = input?.toInt()
+                print("Numero 2: ")
+                val number2 = input?.toInt()
+                if (number1 != null && number2 != null) {
+                    calculator.subtract(number1, number2)
+                }
             }
             "0" -> { println("Até mais!"); break }
             else -> println("Opção inválida.")
