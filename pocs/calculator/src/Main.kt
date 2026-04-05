@@ -6,6 +6,7 @@ fun main() {
         println("1. Somar")
         println("2. Subatrair")
         println("3. Multiplicar")
+        println("4. Dividir")
         println("0. Sair")
         print("Escolha: ")
 
@@ -36,6 +37,15 @@ fun main() {
                 val number2 = readLine()?.toDoubleOrNull()
                 if (number1 != null && number2 != null) {
                     println("Total: ${calculator.multiply(number1, number2)}")
+                }
+            }
+            "3" -> {
+                print("Numero 1: ")
+                val number1 = readLine()?.toDoubleOrNull()
+                print("Numero 2: ")
+                val number2 = readLine()?.toDoubleOrNull()
+                if (number1 != null && number2 != null) {
+                    println("Total: ${calculator.divide(number1, number2)}")
                 }
             }
             "0" -> { println("Até mais!"); break }
