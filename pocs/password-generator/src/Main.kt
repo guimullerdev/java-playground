@@ -6,7 +6,6 @@ fun main() {
     val password = generatePassword(length)
 
     println("\nGenerated password: $password")
-    println("Strength: ${password}")
 }
 
 fun generatePassword(length: Int): String {
@@ -19,5 +18,10 @@ fun generatePassword(length: Int): String {
 }
 
 fun readLength(message: String): Int {
-    return 0
+    println(message)
+    val length = readLine()?.toIntOrNull();
+    if (length != null && length > 4) {
+        return length
+    }
+    return readLength(message + "(ex: tamanho mínimo de 4)");
 }
