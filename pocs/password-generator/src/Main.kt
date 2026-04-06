@@ -14,13 +14,15 @@ fun generatePassword(length: Int): String {
     val numbers = "0123456789"
     val specials = "!@#\$%^&*()-_=+[]{}|;:,.<>?"
 
-    return ""
+    val characters = lowercase + uppercase + numbers + specials
+
+    return (1..length).map { characters.random() }.joinToString("")
 }
 
 fun readLength(message: String): Int {
     println(message)
     val length = readLine()?.toIntOrNull();
-    if (length != null && length > 4) {
+    if (length != null && length >= 4) {
         return length
     }
     return readLength(message + "(ex: tamanho mínimo de 4)");
