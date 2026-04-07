@@ -23,4 +23,10 @@ fun main() {
             }
         }
     }.also { it.isDaemon = true; it.start() }
+
+    val reader = System.`in`.bufferedReader();
+    while (true) {
+        reader.readLine()?.trim() ?: continue
+        if (stopwatch.running) stopwatch.pause() else stopwatch.start();
+    }
 }
