@@ -1,14 +1,26 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+fun Long.formatTime(): String {
+    val minutes      = (this / 60000) % 60
+    val seconds      = (this / 1000) % 60
+    val centiseconds = (this / 10) % 100
+    return "%02d:%02d:%02d".format(minutes, seconds, centiseconds)
+}
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
-    }
+fun main() {
+    val stopwatch = Stopwatch();
+
+    println("=== Stopwatch ===");
+    println("[Enter] play/pause");
+    println();
+
+    Thread {
+        while (!Thread.interrupted()) {
+            print("\r  ${stopwatch.currentTime.formatTime()}")
+            System.out.flush()
+            try {
+                Thread.sleep(10)
+            } catch (e: InterruptedException) {
+                break
+            }
+        }
+    }.also { it.isDaemon = true; it.start() }
 }
