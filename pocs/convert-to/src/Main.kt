@@ -1,14 +1,34 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+    val reader = System.`in`.bufferedReader()
+    val units = DistanceUnit.entries
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+    println("=== Converter Distance ===\n")
+
+    while (true) {
+        println("From:")
+        units.forEachIndexed { i, u -> println("${i + 1}. ${u.label}") }
+        print("\nChoose: ")
+
+        val fromInput = reader.readLine()?.trim() ?: continue
+
+        val from = fromInput.toIntOrNull()?.minus(1)
+            ?.let { units.getOrNull(it) }
+            ?: run { println("Invalid option\n"); continue }
+
+        println("\nTo:")
+        units.forEachIndexed { i, u -> println("${i + 1}. ${u.label}") }
+        print("Choose: ")
+
+        val to = reader.readLine()?.trim()?.toIntOrNull()?.minus(1)
+            ?.let { units.getOrNull(it) }
+            ?: run { println("Invalid option\n"); continue }
+
+        print("\nValue: ")
+        val value = reader.readLine()?.trim()?.toDoubleOrNull()
+            ?: run { println("Invalid value\n"); continue }
+
+        val result = Converter.distance(value, from, to)
+
+        println("\n$value ${from.label} = %.4f ${to.label}\n".format(result))
     }
 }
